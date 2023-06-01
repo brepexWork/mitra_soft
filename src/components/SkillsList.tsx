@@ -12,7 +12,7 @@ const SkillsList:FC<IProps> = ({title, skills}) => {
 
             <div className={`flex flex-wrap mt-1`}>
                 {skills.map((skill, index) =>
-                    <div className={`px-3 py-1 bg-custom_red text-colors-white mr-2 text-xl rounded-xl mt-2`}>{skill}</div>
+                    <div className={`px-3 py-1 bg-custom_red text-colors-white mr-2 text-md sm:text-xl rounded-xl mt-2`}>{skill}</div>
                 )}
             </div>
         </div>

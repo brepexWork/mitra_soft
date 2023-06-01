@@ -7,7 +7,7 @@ const ProjectPage = () => {
     const library = ['react-select', 'tailwind', 'react-router-dom', 'MaterialUI', 'Axios']
 
     return (
-        <div className={`container mx-auto px-4 lg:px-0`}>
+        <div className={`container mx-auto px-4 lg:px-0 mt-6`}>
             <div className={`lg:text-3xl font-bold text-2xl underline`}>Информация об проекте</div>
 
             <SkillsList

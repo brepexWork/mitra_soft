@@ -57,7 +57,7 @@ const PostList = React.memo(() => {
                         onChange={(value) => setSort(value)}
                         placeholder={'Сортировка'}
                     />
-                    <div className={`flex flex-wrap justify-center sm:justify-between mx-2 sm:mx-0 mt-6`}>
+                    <div className={`flex flex-wrap justify-center sm:justify-between mt-6`}>
                         {posts.map((post, index) =>
                             <PostItem
                                 key={index}
