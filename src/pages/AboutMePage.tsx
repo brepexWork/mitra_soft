@@ -33,7 +33,7 @@ const AboutMePage = () => {
 
             <SkillsList title={'Языки'} skills={skills} />
             <SkillsList title={'Технологии'} skills={technology} />
-            <SkillsList title={'Библеотеки>'} skills={libraries} />
+            <SkillsList title={'Библиотеки'} skills={libraries} />
         </div>
     );
 };

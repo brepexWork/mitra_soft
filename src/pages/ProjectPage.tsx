@@ -15,11 +15,11 @@ const ProjectPage = () => {
                 skills={technology}
             />
 
-            <SkillsList title={'Используемые библеотеки'} skills={library} />
+            <SkillsList title={'Используемые библиотеки'} skills={library} />
 
             <div className={`text-xl mt-4 text-colors-gray-500`}>Вместо Redux-Saga в проекте я использовал redux-toolkit, так как с redux-saga я знаком не так хорошо как с redux-toolkit. Вместо react-bootstrap я использовал MaterialUI, так как раньше с react-bootstrap не работал. <span className={`font-bold`}> Все эти технологии не составит труда выучить. Но пока использовал другие, что бы показать умения в работе с альтернативными технологиями!</span></div>
 
-            <div className={`mt-4 text-2xl text-custom_brown font-bold`}>Время затраченное на проект: <span className={`text-2xl font-bold text-custom_red`}>-</span></div>
+            <div className={`mt-4 text-2xl text-custom_brown font-bold`}>Время затраченное на проект: <span className={`text-2xl font-bold text-custom_red`}>5-6</span></div>
         </div>
     );
 };
