@@ -4,28 +4,18 @@ import {IFetchDataResponse} from "../types/IFetchDataResponse";
 import fetchUserData from "../ustils/fetchUserData";
 import Loader from "../../../components/Loader";
 import {Alert} from "@mui/material";
+import {userAPI} from "../services/UserService";
 
 const UserInformation = React.memo(() => {
-
     const {id} = useParams()
-    const [user, setUser] = useState<IFetchDataResponse>()
-    const [error, setError] = useState<null | string>(null)
 
-    useEffect(() => {
-        if (id && !isNaN(parseInt(id)))
-            fetchUserData(parseInt(id)).then(userData => {
-                if(typeof userData === 'string')
-                    setError(userData)
-                else
-                    setUser(userData)
-            })
-    }, [])
+    const {data: user, isLoading, isError} = userAPI.useFetchUserQuery(id ? id : '')
 
     return (
         <div>
-            {!user && !error && <Loader/>}
+            {isLoading && <Loader/>}
 
-            {error && <Alert severity={'error'}>{error}</Alert>}
+            {isError && <Alert severity={'error'}>Позьзователя не существует</Alert>}
 
             {user &&
                 <div>
