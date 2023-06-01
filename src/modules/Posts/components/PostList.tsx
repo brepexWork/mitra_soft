@@ -4,23 +4,30 @@ import {useAppDispatch} from "../../../store/redux-hook";
 import {useSelector} from "react-redux";
 import fetchPostSelector from "../selectors/fetchPostSelector";
 import Loader from "../../../components/Loader";
-import {Button, Card, CardActions, CardContent, CardMedia, Pagination, Typography} from '@mui/material';
-import bg from '../images/no-photo.jpg'
-import CommentItem from "./CommentItem";
+import {Pagination} from '@mui/material';
 import PostItem from "./PostItem";
+import {useSearchParams} from "react-router-dom";
 
 const PostList = React.memo(() => {
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const page = searchParams.get('page');
 
     const dispatch = useAppDispatch()
     const {posts, loading, error} = useSelector(fetchPostSelector)
 
     const handlerPost = (page:number) => {
-        dispatch(fetchPosts(page))
+        setSearchParams({ page:  String(page)});
     }
 
     useEffect(() => {
         dispatch(fetchPosts(0))
     }, [])
+
+    useEffect(() => {
+        if(page)
+            dispatch(fetchPosts(parseInt(page)))
+    }, [page])
 
     return (
         <div>
@@ -30,27 +37,33 @@ const PostList = React.memo(() => {
                 </div>
             }
 
-            <div className={`flex flex-wrap justify-center sm:justify-between mx-2 sm:mx-0`}>
-                {posts.map((post, index) =>
-                    <PostItem
-                        key={index}
-                        title={post.title}
-                        description={post.body}
-                        userId={post.userId}
-                        id={post.id}
-                    />
-                )}
-            </div>
+            {
+                !loading && !error &&
+                <>
+                    <div className={`flex flex-wrap justify-center sm:justify-between mx-2 sm:mx-0`}>
+                        {posts.map((post, index) =>
+                            <PostItem
+                                key={index}
+                                title={post.title}
+                                description={post.body}
+                                userId={post.userId}
+                                id={post.id}
+                            />
+                        )}
+                    </div>
 
-            <Pagination
-                count={10}
-                onChange={(_, page) => handlerPost(page)}
-                sx={{
-                    justifyContent: 'center',
-                    display: 'flex',
-                    marginTop: '20px'
-                }}
-            />
+                    <Pagination
+                        count={10}
+                        page={page ? parseInt(page) : 1}
+                        onChange={(_, page) => handlerPost(page)}
+                        sx={{
+                            justifyContent: 'center',
+                            display: 'flex',
+                            marginTop: '20px'
+                        }}
+                    />
+                </>
+            }
         </div>
     );
 })
