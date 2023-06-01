@@ -3,7 +3,12 @@ import {CircularProgress} from "@mui/material";
 
 const Loader = () => {
     return (
-        <CircularProgress />
+        <CircularProgress
+            sx={{
+                margin: '0 auto',
+                display: 'block'
+            }}
+        />
     );
 };
 

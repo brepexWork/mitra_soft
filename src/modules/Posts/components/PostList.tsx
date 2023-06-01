@@ -25,7 +25,8 @@ const PostList = React.memo(() => {
     }, [])
 
     useEffect(() => {
-        if(page)
+        console.log(page && !isNaN(parseInt(page)))
+        if(page && !isNaN(parseInt(page)))
             dispatch(fetchPosts(parseInt(page)))
     }, [page])
 
@@ -54,7 +55,7 @@ const PostList = React.memo(() => {
 
                     <Pagination
                         count={10}
-                        page={page ? parseInt(page) : 1}
+                        page={page && !isNaN(parseInt(page)) ? parseInt(page) : 1}
                         onChange={(_, page) => handlerPost(page)}
                         sx={{
                             justifyContent: 'center',
