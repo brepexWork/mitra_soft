@@ -1,8 +1,8 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC} from 'react';
 import {Accordion, AccordionDetails, AccordionSummary, Typography} from "@mui/material";
-import {IFetchCommentsResponse} from "../types/IFetchCommentsResponse";
-import fetchComments from "../utils/fetchComments";
 import CommentDetailItem from "./CommentDetailItem";
+import {PostsAPI} from "../services/PostsAPI";
+import Loader from "../../../components/Loader";
 
 interface IProps {
     id: number
@@ -10,12 +10,7 @@ interface IProps {
 
 const CommentItem: FC<IProps> = ({id}) => {
 
-    const [comments, setComments] = useState<IFetchCommentsResponse[]>([])
-    useEffect(() => {
-        fetchComments(id).then(commentsList => {
-            setComments(commentsList)
-        })
-    }, [])
+    const {data: comments, isLoading, isError} = PostsAPI.useFetchCommentsQuery(id)
 
     return (
         <Accordion>
@@ -25,7 +20,7 @@ const CommentItem: FC<IProps> = ({id}) => {
                 <Typography>Комментарии</Typography>
             </AccordionSummary>
             <AccordionDetails>
-                {comments.map((comment, index) =>
+                {comments && comments.map((comment, index) =>
                     <CommentDetailItem
                         key={index}
                         name={comment.name}
@@ -33,6 +28,7 @@ const CommentItem: FC<IProps> = ({id}) => {
                         body={comment.body}
                     />
                 )}
+                {isLoading && <Loader />}
             </AccordionDetails>
         </Accordion>
     );

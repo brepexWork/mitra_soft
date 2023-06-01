@@ -1,7 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useParams} from "react-router-dom";
-import {IFetchDataResponse} from "../types/IFetchDataResponse";
-import fetchUserData from "../ustils/fetchUserData";
 import Loader from "../../../components/Loader";
 import {Alert} from "@mui/material";
 import {userAPI} from "../services/UserService";
