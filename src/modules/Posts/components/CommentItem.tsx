@@ -25,8 +25,9 @@ const CommentItem: FC<IProps> = ({id}) => {
                 <Typography>Комментарии</Typography>
             </AccordionSummary>
             <AccordionDetails>
-                {comments.map(comment =>
+                {comments.map((comment, index) =>
                     <CommentDetailItem
+                        key={index}
                         name={comment.name}
                         email={comment.email}
                         body={comment.body}

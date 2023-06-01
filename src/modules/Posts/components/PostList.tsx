@@ -4,7 +4,7 @@ import {useAppDispatch} from "../../../store/redux-hook";
 import {useSelector} from "react-redux";
 import fetchPostSelector from "../selectors/fetchPostSelector";
 import Loader from "../../../components/Loader";
-import {Button, Card, CardActions, CardContent, CardMedia, Typography} from '@mui/material';
+import {Button, Card, CardActions, CardContent, CardMedia, Pagination, Typography} from '@mui/material';
 import bg from '../images/no-photo.jpg'
 import CommentItem from "./CommentItem";
 import PostItem from "./PostItem";
@@ -13,6 +13,10 @@ const PostList = React.memo(() => {
 
     const dispatch = useAppDispatch()
     const {posts, loading, error} = useSelector(fetchPostSelector)
+
+    const handlerPost = (page:number) => {
+        dispatch(fetchPosts(page))
+    }
 
     useEffect(() => {
         dispatch(fetchPosts(0))
@@ -37,6 +41,16 @@ const PostList = React.memo(() => {
                     />
                 )}
             </div>
+
+            <Pagination
+                count={10}
+                onChange={(_, page) => handlerPost(page)}
+                sx={{
+                    justifyContent: 'center',
+                    display: 'flex',
+                    marginTop: '20px'
+                }}
+            />
         </div>
     );
 })
