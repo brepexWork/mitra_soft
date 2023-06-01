@@ -2,8 +2,11 @@ import React from 'react';
 import {PostList} from '../modules/Posts/index'
 
 const PostsPage = () => {
+
+
+
     return (
-        <div>
+        <div className={`container mx-auto`}>
             <PostList />
         </div>
     );
