@@ -1,21 +1,37 @@
-import React from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Accordion, AccordionDetails, AccordionSummary, Typography} from "@mui/material";
+import {IFetchCommentsResponse} from "../types/IFetchCommentsResponse";
+import fetchComments from "../utils/fetchComments";
+import CommentDetailItem from "./CommentDetailItem";
 
-const CommentItem = () => {
+interface IProps {
+    id: number
+}
+
+const CommentItem: FC<IProps> = ({id}) => {
+
+    const [comments, setComments] = useState<IFetchCommentsResponse[]>([])
+    useEffect(() => {
+        fetchComments(id).then(commentsList => {
+            setComments(commentsList)
+        })
+    }, [])
+
     return (
         <Accordion>
             <AccordionSummary
                 expandIcon={'up'}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
             >
-                <Typography>Accordion 1</Typography>
+                <Typography>Комментарии</Typography>
             </AccordionSummary>
             <AccordionDetails>
-                <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.
-                </Typography>
+                {comments.map(comment =>
+                    <CommentDetailItem
+                        name={comment.name}
+                        email={comment.email}
+                        body={comment.body}
+                    />
+                )}
             </AccordionDetails>
         </Accordion>
     );

@@ -11,7 +11,7 @@ interface IProps {
 }
 const PostItem:FC<IProps> = React.memo(({title, description, userId, id}) => {
     return (
-        <Card sx={{maxWidth: 345, marginBottom: '30px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+        <Card sx={{marginBottom: '30px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
             <Avatar
                 alt="Avatar"
                 sx={{
@@ -33,7 +33,7 @@ const PostItem:FC<IProps> = React.memo(({title, description, userId, id}) => {
                 <Button size="small">Перейти</Button>
             </CardActions>
 
-            <CommentItem/>
+            <CommentItem id={id}/>
         </Card>
     )
 })
