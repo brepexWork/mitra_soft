@@ -2,14 +2,15 @@ import {CaseReducer, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
 import {IFetchPosts} from "../../types/AsynkThunks/IFetchPosts";
 import {IPostItem, IPostsSlice} from "../../types/IPostsSlice";
 import axios, {Axios, AxiosResponse} from "axios";
+import {IFetchPostsRequest} from "../../types/AsynkThunks/IFetchPostsRequest";
 
-export const fetchPosts = createAsyncThunk<IPostItem[], number, {rejectValue: string}>(
+export const fetchPosts = createAsyncThunk<IPostItem[], IFetchPostsRequest, {rejectValue: string}>(
     'posts/fetch',
-    async (page, {rejectWithValue}) => {
+    async ({page, sort}, {rejectWithValue}) => {
         try {
 
             const response_posts:AxiosResponse<IPostItem[]> = await axios({
-                url: `https://jsonplaceholder.typicode.com/posts?_page=${page}`,
+                url: `https://jsonplaceholder.typicode.com/posts?_page=${page}&_sort=title&_order=${sort}`,
                 method: "GET",
             })
 

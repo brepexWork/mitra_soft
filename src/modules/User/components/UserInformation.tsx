@@ -12,9 +12,7 @@ const UserInformation = React.memo(() => {
     return (
         <div>
             {isLoading && <Loader/>}
-
             {isError && <Alert severity={'error'}>Позьзователя не существует</Alert>}
-
             {user &&
                 <div>
                     <div className={`mt-4 font-bold text-2xl text-custom_brown`}>Личные данные</div>
