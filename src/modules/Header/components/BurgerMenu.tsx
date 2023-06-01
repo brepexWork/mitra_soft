@@ -1,5 +1,4 @@
-import React, {FC, useState} from 'react';
-import {isBooleanObject} from "util/types";
+import React, {FC} from 'react';
 import PositionElement from "../../../helpers/PositionElement";
 
 interface IProps {

@@ -1,6 +1,5 @@
 import React from 'react';
 import SkillsList from "../components/SkillsList";
-import skillsList from "../components/SkillsList";
 
 const AboutMePage = () => {
 

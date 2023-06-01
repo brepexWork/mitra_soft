@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
 import {Avatar, Button, Card, CardActions, CardContent, CardMedia, Typography} from "@mui/material";
-import bg from "../images/no-photo.jpg";
 import CommentItem from "./CommentItem";
 import {Link} from "react-router-dom";
 

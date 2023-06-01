@@ -1,7 +1,6 @@
 import {CaseReducer, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
-import {IFetchPosts} from "../../types/AsynkThunks/IFetchPosts";
 import {IPostItem, IPostsSlice} from "../../types/IPostsSlice";
-import axios, {Axios, AxiosResponse} from "axios";
+import axios, {AxiosResponse} from "axios";
 import {IFetchPostsRequest} from "../../types/AsynkThunks/IFetchPostsRequest";
 
 export const fetchPosts = createAsyncThunk<IPostItem[], IFetchPostsRequest, {rejectValue: string}>(
